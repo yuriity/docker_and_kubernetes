@@ -1,23 +1,26 @@
-sudo: required
-services:
-  - docker
+### frontend project
 
-before_install:
-  - cd frontend
-  - docker build -t dercodder/frontend -f Dockerfile.dev .
+# sudo: required
+# services:
+#   - docker
 
-script:
-  - docker run dercodder/frontend npm run test -- --coverage
+# before_install:
+#   - cd frontend
+#   - docker build -t dercodder/frontend -f Dockerfile.dev .
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "eu-central-1"
-#   app: "docker-react"
-#   env: "DockerReact-env"
-#   bucket_name: "elasticbeanstalk-eu-central-1-807706527096"
-#   bucket_path: "docker-react"
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key:
-#     secure: "$AWS_SECRET_KEY"
+# script:
+#   - docker run dercodder/frontend npm run test -- --coverage
+
+# # deploy:
+# #   provider: elasticbeanstalk
+# #   region: "eu-central-1"
+# #   app: "docker-react"
+# #   env: "DockerReact-env"
+# #   bucket_name: "elasticbeanstalk-eu-central-1-807706527096"
+# #   bucket_path: "docker-react"
+# #   on:
+# #     branch: master
+# #   access_key_id: $AWS_ACCESS_KEY
+# #   secret_access_key:
+# #     secure: "$AWS_SECRET_KEY"
+
