@@ -1,3 +1,30 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - cd complex-fibonacci-app
+  - docker build -t dercodder/react-test -f ./client/Dockerfile.dev .
+
+script:
+  - docker run dercodder/react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t dercodder/multi-client ./client
+  - docker build -t dercodder/multi-nginx ./nginx
+  - docker build -t dercodder/multi-server ./server
+  - docker build -t dercodder/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push dercodder/multi-client
+  - docker push dercodder/multi-nginx
+  - docker push dercodder/multi-server
+  - docker push dercodder/multi-worker
+
+
+#### frontend
+
 # sudo: required
 # services:
 #   - docker
