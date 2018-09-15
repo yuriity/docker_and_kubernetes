@@ -4,6 +4,7 @@ services:
 
 before_install:
   - cd complex-fibonacci-app
+  - ls
   - docker build -t dercodder/react-test -f ./client/Dockerfile.dev .
 
 script:
